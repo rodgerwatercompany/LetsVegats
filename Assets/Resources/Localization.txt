@@ -1,0 +1,49 @@
+﻿KEY,繁體中文,简体中文,English
+Language,繁體中文,简体中文,English
+Exchange,分數兌換,分数兑换,Exchange
+Denom,兌換比例,兑换比例,Denom
+UserInfo,會員帳號\n可用餘額\n目前分數\n兌換分數,会员帐号\n可用余额\n目前分数\n兑换分数, User ID \nBalance \nCredit \nExchange
+GameSetting,遊戲設定,游戏设定,Game Setting
+SoundOn,音效/開,音效/开,Mute / ON
+SoundOff,音效/關,音效/关,Mute / Off
+MusicOn,音乐/開,音乐/开,Music / ON
+MusicOff,音樂/關,音乐/关,Music / Off
+History,下注記錄,下注记录,History
+Rule,規則,规则,Rule
+Exit,登出,登出,Exit
+LanguageGameVersion,語系設定\n遊戲版本,语系设定\n游戏版本,Language \nGame Version
+LanguageSetting,語系設定,語系設定,Language Setting
+Login,登入,登入,Login
+UserID,會員帳號,会员帐号,User ID
+Password,密　　碼,密　　码,Password
+StoreAccountPassword,儲存帳號密碼,储存帐号密码,Store Account Password
+GameHistory,夜市人生 - 下注記錄,夜市人生 - 下注记录,Night Market - History
+Time,時　間,时　间,Time
+Wager,注　單,注　单,Wager
+Result,結　果,结　果,Result
+Win,贏,赢,Win
+Lose,輸,输,Lose
+BetAmountInTotal,總投注,总投注,Bet amount\nin total
+TotalPayoff,總派彩,总派彩,Total payoff
+JackPotInformation,彩金資料(RMB),彩金资料(RMB),JackPot Information\n(RMB)
+Subtotal,小計,小计,Subtotal
+Total,總計,总计,Total
+BaseNote,基注(額度：分數),基注(额度：分数),Base Note\n(Line: Fraction)
+PerLine,每線,每线,Per line
+TotalLine,共,共,total
+Line,(線),(线),(line)
+Totals,總共：,总共：,Total：
+Dollar,(元),(元),(dollar)
+BettingInf,下注資訊,下注资讯,Betting\nInformation
+DisplayMode,顯示模式,显示模式,Display Mode
+Score,分數,分数,Score
+WagerDetail,下注明細,下注明细,Wager Detail
+DetailedWagers,注單明細,注单明细,Detailed Wagers
+ModuleData,牌組資料,牌组资料,Module Data
+Amount,金　額,金　额,Amount
+SN,局號,局号,SN
+WinScore,贏得分數,赢得分数,WIN
+Credits,可用分數,可用分数,CREDITS
+TotalBet,下注分數,下注分数,TOTALBET
+WithdrawalsPassword,取款密碼,取款密码,Withdrawals Password
+VerificationCode,驗證碼,验证码,Verification Code

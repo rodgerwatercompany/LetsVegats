@@ -1,0 +1,268 @@
+fileFormatVersion: 2
+guid: d4dd266724152c84dbcef677f259312a
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: banner
+    21300002: fg_time_20
+    21300004: fg_time_15
+    21300006: fg_time_12
+    21300008: fg_time_8
+    21300010: setting
+    21300012: logo
+    21300014: fg_logo
+    21300016: bg
+    21300018: bg_2
+    21300020: wild
+    21300022: freegame
+    21300024: bonusgame
+    21300026: x1
+    21300028: x2
+    21300030: x3
+    21300032: x5
+    21300034: x8
+    21300036: x10
+    21300038: x15
+    21300040: arrow
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: fg_time_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 92
+        width: 230
+        height: 232
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fg_time_15
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 92
+        width: 232
+        height: 230
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fg_time_12
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 92
+        width: 232
+        height: 230
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fg_time_8
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 92
+        width: 232
+        height: 230
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: setting
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 295
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: logo
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 261
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: fg_logo
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 0
+        width: 261
+        height: 90
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bg
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 326
+        width: 1000
+        height: 698
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bg_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 496
+        width: 600
+        height: 300
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wild
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 59
+        width: 63
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: freegame
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 59
+        width: 129
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bonusgame
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 59
+        width: 153
+        height: 31
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x1
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 18
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x2
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 18
+        width: 44
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x3
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 18
+        width: 43
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x5
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 18
+        width: 43
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x8
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 18
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x10
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 18
+        width: 51
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: x15
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 18
+        width: 51
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arrow
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 299
+        width: 29
+        height: 24
+      alignment: 7
+      pivot: {x: .5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
