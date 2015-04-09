@@ -25,4 +25,5 @@ public class TileObject : MonoBehaviour {
     {
         uisprite.spriteName = name;
     }
+
 }

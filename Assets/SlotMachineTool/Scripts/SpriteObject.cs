@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BingoLineObject : MonoBehaviour
+public class SpriteObject : MonoBehaviour
 {
 
-    private UISprite uisprite;
+    private UIBasicSprite uisprite;
 
     void Awake()
     {
-        uisprite = gameObject.GetComponent<UISprite>();
+        uisprite = gameObject.GetComponent<UIBasicSprite>();
         if (uisprite == null)
             Debug.Log("Null !");
     }
@@ -20,11 +20,6 @@ public class BingoLineObject : MonoBehaviour
         Close();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     public void Open()
     {
         uisprite.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);

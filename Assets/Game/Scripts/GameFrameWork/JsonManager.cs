@@ -31,46 +31,48 @@ public class JsonManager
         return name;
         */
     }
-    public static void Show(LuaInterface.LuaTable keynames)
-    {
-        ICollection vals = keynames.Values;
-        foreach (string str in vals)
-            Debug.Log("str is [" + str + "]");
-    }
-    //public static JsonData GetJD(string objectname, string[] keynames)
-    public static JsonData GetJD(string objectname, LuaInterface.LuaTable keynames)
-    {
-        JsonData jd_obj = dic_jsons[objectname];
-        JsonData jd_temp = jd_obj;
+    
+    //public static void Show(LuaInterface.LuaTable keynames)
+    //{
+    //    ICollection vals = keynames.Values;
+    //    foreach (string str in vals)
+    //        Debug.Log("str is [" + str + "]");
+    //}
+    ////public static JsonData GetJD(string objectname, string[] keynames)
+    //public static JsonData GetJD(string objectname, LuaInterface.LuaTable keynames)
+    //{
+    //    JsonData jd_obj = dic_jsons[objectname];
+    //    JsonData jd_temp = jd_obj;
 
-        ICollection vals = keynames.Values;
-        foreach (object obj in vals)
-        {
-            if (jd_temp != null)
-                jd_temp = GetJsonData(jd_temp, obj);
-            else
-            {
-                jd_temp = null;
-                break;
-            }
-        }
-        /*
-        for (int i = 0; i < vals.Count; i++)
-        {
+    //    ICollection vals = keynames.Values;
+    //    foreach (object obj in vals)
+    //    {
+    //        if (jd_temp != null)
+    //            jd_temp = GetJsonData(jd_temp, obj);
+    //        else
+    //        {
+    //            jd_temp = null;
+    //            break;
+    //        }
+    //    }
+    //    /*
+    //    for (int i = 0; i < vals.Count; i++)
+    //    {
             
-            if (jd_temp != null)
-                jd_temp = GetJsonData(jd_temp, vals[i]);
-            else
-            {
-                jd_temp = null;
-                break;
-            }
-        }*/
-        /*
-        Debug.Log("jd_temp type " + jd_temp.GetJsonType());
-        Debug.Log("jd_temp count " + jd_temp.Count);*/
-        return jd_temp;
-    }
+    //        if (jd_temp != null)
+    //            jd_temp = GetJsonData(jd_temp, vals[i]);
+    //        else
+    //        {
+    //            jd_temp = null;
+    //            break;
+    //        }
+    //    }*/
+    //    /*
+    //    Debug.Log("jd_temp type " + jd_temp.GetJsonType());
+    //    Debug.Log("jd_temp count " + jd_temp.Count);*/
+    //    return jd_temp;
+    //}
+
     private static JsonData GetJsonData<T>(JsonData jsondata, T keyname)
     {
         try

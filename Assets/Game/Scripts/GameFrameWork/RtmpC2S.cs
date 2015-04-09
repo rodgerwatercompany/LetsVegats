@@ -1,8 +1,11 @@
 ﻿
 public class RtmpC2S
 {
-    public static string sid;
-    public static string ip;
+    public static string sid = "";
+    public static string ip = "";
+    public static string userid = "";
+    public static string hallid = "";
+    public static string gamecode = "";
 
 #if UNITY_IOS || UNITY_IPHONE
 
@@ -125,10 +128,16 @@ public class RtmpC2S
 		myPlugin3.CallAndroidStatic4 ("balanceExchange","null");
 	}
 
+    static public void MachineLeave()
+    {
+        UnityEngine.Debug.Log("machineLeave " + userid + " " + hallid + " " + gamecode);
+        myPlugin3.CallAndroidStatic4("machineLeave", userid , hallid, gamecode);
+    }
+
     // end the plugin loop.
     static public void Close()
     {
-
+        UnityEngine.Debug.Log("RtmpC2S close");
         myPlugin3.CallAndroidStatic4("close", "null");
     }
 

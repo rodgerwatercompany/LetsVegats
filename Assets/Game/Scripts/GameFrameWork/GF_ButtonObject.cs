@@ -2,16 +2,24 @@
 using System.Collections;
 
 
-public class GF_ButtonObject : MonoBehaviour {
+public class GF_ButtonObject : MonoBehaviour
+{
 
     private LuaManager_new luamanager;
+    public UIButton uibutton;
 
-    public string[] Name_CallLuaFunciton;
+    // 要呼叫Lua方法的名稱
+    public string Name_CallLuaFunction;
+
+    // 參數
+    public string str_parms;
 
     public bool bClickDisable;
 
-    public UIButton uibutton;
+    // 傳送參數呼叫
+    public bool bUseParam;
 
+    
     void Awake()
     {
 
@@ -20,15 +28,6 @@ public class GF_ButtonObject : MonoBehaviour {
             Debug.LogError("can't found luamanager !");
     }
 
-	// Use this for initialization
-	void Start () {
-
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     public void SetActive(bool sw)
     {
@@ -36,7 +35,9 @@ public class GF_ButtonObject : MonoBehaviour {
         gameObject.SetActive(sw);
 
         if (sw)
+        {
             SetState("Normal");
+        }
     }
 
     public void SetState(string state)
@@ -59,19 +60,26 @@ public class GF_ButtonObject : MonoBehaviour {
                 break;
         }
     }
-
+    
     public void OnClick()
     {
 
-        if (uibutton.state != UIButtonColor.State.Disabled)
+        if (uibutton.state != UIButtonColor.State.Disabled && uibutton.enabled)
         {
-            print("OnClick name is " + name);
-
-            foreach (string str in Name_CallLuaFunciton)
-                luamanager.CallLuaFuction(str);
 
             if (bClickDisable)
                 SetState("Disabled");
+
+            if (!bUseParam)
+            {
+
+                luamanager.CallLuaFuction(Name_CallLuaFunction);
+            }
+            else
+            {
+                luamanager.CallLuaFuction(Name_CallLuaFunction, str_parms);
+            }
+
         }
     }
 }

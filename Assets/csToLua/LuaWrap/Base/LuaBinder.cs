@@ -3,9 +3,11 @@ public static class LuaBinder
 {
 	public static void Bind(IntPtr L)
 	{
+
+        wheelWrap.Register(L);
         RtmpC2SWrap.Register(L);
 		objectWrap.Register(L);
-        //ObjectWrap.Register(L);
+        ObjectWrap.Register(L);
         CoroutineWrap.Register(L);
 		FilterModeWrap.Register(L);
 		TextureWrapModeWrap.Register(L);
@@ -37,7 +39,7 @@ public static class LuaBinder
 		JointSpringWrap.Register(L);
 		JointLimitsWrap.Register(L);
 		JointWrap.Register(L);
-        JsonManagerWrap.Register(L);
+        //JsonManagerWrap.Register(L);
         HingeJointWrap.Register(L);
 		SpringJointWrap.Register(L);
 		FixedJointWrap.Register(L);

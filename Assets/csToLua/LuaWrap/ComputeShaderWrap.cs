@@ -101,7 +101,6 @@ public class ComputeShaderWrap
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int SetFloats(IntPtr L)
 	{
-		int count = LuaDLL.lua_gettop(L);
 		ComputeShader obj = LuaScriptMgr.GetNetObject<ComputeShader>(L, 1);
 		string arg0 = LuaScriptMgr.GetLuaString(L, 2);
 		float[] objs1 = LuaScriptMgr.GetArrayNumber<float>(L, 3);
@@ -112,7 +111,6 @@ public class ComputeShaderWrap
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int SetInts(IntPtr L)
 	{
-		int count = LuaDLL.lua_gettop(L);
 		ComputeShader obj = LuaScriptMgr.GetNetObject<ComputeShader>(L, 1);
 		string arg0 = LuaScriptMgr.GetLuaString(L, 2);
 		int[] objs1 = LuaScriptMgr.GetArrayNumber<int>(L, 3);

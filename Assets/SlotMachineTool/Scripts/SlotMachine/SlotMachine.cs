@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SlotMachine : MonoBehaviour {
 
+
     public LuaManager_new luaMgr;
 
     public TileLine[] tileLines;
@@ -13,7 +14,10 @@ public class SlotMachine : MonoBehaviour {
     private bool bBreak;
 
     private string[] tilesprites;
-    
+
+
+    public string Name_Function_FinishStopSpin;
+
     // Use this for initialization
     void Start()
     {
@@ -58,7 +62,7 @@ public class SlotMachine : MonoBehaviour {
 
     private void CallLua_FinisStopSpin()
     {
-        luaMgr.CallLuaFuction("FinishStopSpin");
+        luaMgr.CallLuaFuction(Name_Function_FinishStopSpin);
     }
 
     public void OnClick_StartRun()
@@ -92,6 +96,17 @@ public class SlotMachine : MonoBehaviour {
         foreach (string name in tilesprites)
             print("id is " + name);
         */
+    }
+
+    // 灰階
+    public void GreyTileObjects()
+    {
+
+    }
+    // 恢復顏色
+    public void RecoverAllTileObject()
+    {
+
     }
 
     private string[] GetTileSpriteInfo(int idx)

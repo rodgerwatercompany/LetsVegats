@@ -16,6 +16,7 @@ public class RtmpC2SWrap
 		new LuaMethod("HitBonus", HitBonus),
 		new LuaMethod("EndBonus", EndBonus),
 		new LuaMethod("BalanceExchange", BalanceExchange),
+		new LuaMethod("MachineLeave", MachineLeave),
 		new LuaMethod("Close", Close),
 		new LuaMethod("New", _CreateRtmpC2S),
 		new LuaMethod("GetClassType", GetClassType),
@@ -25,6 +26,9 @@ public class RtmpC2SWrap
 	{
 		new LuaField("sid", get_sid, set_sid),
 		new LuaField("ip", get_ip, set_ip),
+		new LuaField("userid", get_userid, set_userid),
+		new LuaField("hallid", get_hallid, set_hallid),
+		new LuaField("gamecode", get_gamecode, set_gamecode),
 	};
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -73,6 +77,27 @@ public class RtmpC2SWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_userid(IntPtr L)
+	{
+		LuaScriptMgr.Push(L, RtmpC2S.userid);
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_hallid(IntPtr L)
+	{
+		LuaScriptMgr.Push(L, RtmpC2S.hallid);
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_gamecode(IntPtr L)
+	{
+		LuaScriptMgr.Push(L, RtmpC2S.gamecode);
+		return 1;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_sid(IntPtr L)
 	{
 		RtmpC2S.sid = LuaScriptMgr.GetString(L, 3);
@@ -83,6 +108,27 @@ public class RtmpC2SWrap
 	static int set_ip(IntPtr L)
 	{
 		RtmpC2S.ip = LuaScriptMgr.GetString(L, 3);
+		return 0;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_userid(IntPtr L)
+	{
+		RtmpC2S.userid = LuaScriptMgr.GetString(L, 3);
+		return 0;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_hallid(IntPtr L)
+	{
+		RtmpC2S.hallid = LuaScriptMgr.GetString(L, 3);
+		return 0;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_gamecode(IntPtr L)
+	{
+		RtmpC2S.gamecode = LuaScriptMgr.GetString(L, 3);
 		return 0;
 	}
 
@@ -181,6 +227,14 @@ public class RtmpC2SWrap
 	{
 		LuaScriptMgr.CheckArgsCount(L, 0);
 		RtmpC2S.BalanceExchange();
+		return 0;
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int MachineLeave(IntPtr L)
+	{
+		LuaScriptMgr.CheckArgsCount(L, 0);
+		RtmpC2S.MachineLeave();
 		return 0;
 	}
 

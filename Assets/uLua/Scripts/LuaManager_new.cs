@@ -1,12 +1,9 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-using LuaInterface;
+﻿using System;
+using UnityEngine;
 
 public class LuaManager_new : MonoBehaviour
 {
+
     public TextAsset[] requireFiles;
     public TextAsset[] scriptFiles;
 
@@ -43,7 +40,6 @@ public class LuaManager_new : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         luaMgr.CallLuaFunction("Start");
     }
 
@@ -68,7 +64,7 @@ public class LuaManager_new : MonoBehaviour
         //Debug.Log("filename is " + filename);
         //Point first = Array.Find(points, p => p.X * p.Y > 100000);
         TextAsset find = Array.Find(requireFiles, p => p.name == filename);
-        //Debug.Log(find.text);
+
         return find;
     }
     

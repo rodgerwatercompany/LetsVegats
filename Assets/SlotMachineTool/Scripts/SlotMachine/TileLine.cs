@@ -8,26 +8,44 @@ public class TileLine : MonoBehaviour {
 
     public TileObject[] tileObjects;
 
-    private bool sw_Move;
+    private bool sw_Move_all;
+
+    private bool[] sw_Move;
     private bool sw_Break;
+    
+    private bool btunround;
+    private int cnt_stop = 0;
 
-    private bool sw_Timercount;
+    // Use this for initialization
+    void Start () {
+        //this.sw_Move = false;
 
-	// Use this for initialization
-	void Start () {
+        sw_Move = new bool[8];
 
-        this.sw_Move = false;
+        this.sw_Move_all = false;
         this.sw_Break = false;
-        this.sw_Timercount = false;
-
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (this.sw_Move)
-            this.Move();
+        if (sw_Move_all)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                if(sw_Move[i])
+                    this.Move(i);
+            }
 
+            if (btunround)
+            {
+                Turnround();
+                btunround = false;
+            }
+
+            if (cnt_stop == 8)
+                sw_Move_all = false;
+        }
 	}
 
     public void SetSpeed(float speed)
@@ -35,60 +53,51 @@ public class TileLine : MonoBehaviour {
         this.fspeed = speed;
     }
 
-    public void Move()
+    public void Move(int idx)
     {
-
         float dis = this.fspeed * Time.deltaTime;
 
-        bool btunround = false;
+        float pos_new = tileObjects[idx].transform.localPosition.y - dis;
+        float limit = -825.0f + idx * 165.0f;
 
-        for (int i = 0; i < tileObjects.Length; i++)
+        if (sw_Break)
         {
-            float pos_old = tileObjects[i].transform.localPosition.y;
-            float pos_new = tileObjects[i].transform.localPosition.y - dis;
-            float limit = -825.0f + i * 165.0f;
-
-            if (sw_Break)
+            if (pos_new <= limit)
             {
-                if (pos_new <= limit)
-                {
-                    //tileObjects[i].transform.localPosition = new Vector3(0.0f, limit, 0.0f);
-                    tileObjects[i].SetPosition(limit);
-                    this.sw_Move = false;
-                }
-                else
-                {
-                    //tileObjects[i].transform.localPosition = new Vector3(0.0f, pos_new, 0.0f);
-                    tileObjects[i].SetPosition(pos_new);
-                }
+                tileObjects[idx].SetPosition(limit);
+
+                sw_Move[idx] = false;
+                cnt_stop++;
             }
             else
             {
-                //tileObjects[i].transform.localPosition = new Vector3(0.0f, pos_new, 0.0f);
-                tileObjects[i].SetPosition(pos_new);
-
-                if (pos_new < -165.0f)
-                {
-                    //print("btrunround");
-                    btunround = true;
-                }
-
+                tileObjects[idx].SetPosition(pos_new);
             }
         }
+        else
+        {
+            tileObjects[idx].SetPosition(pos_new);
 
-        if (btunround)
-            this.Turnround();
-        
-        if (!this.sw_Move)
-            this.ResetPosition();
-        
+            if (pos_new < -165.0f)
+            {
+                btunround = true;
+            }
+
+        }
     }
 
     public void StartRun()
     {
+        sw_Move_all = true;
 
-        this.sw_Move = true;
+        for (int i = 0; i < 8; i++)
+        {
+            sw_Move[i] = true;
+        }
+
         this.sw_Break = false;
+        this.btunround = false;
+        cnt_stop = 0;
     }
     public void StopRun()
     {
@@ -102,10 +111,6 @@ public class TileLine : MonoBehaviour {
             tileObjects[i].SetSprite(idxs[j]);
     }
 
-    private void TimerCountDown()
-    {
-
-    }
     // 5 6 7 不動
     private void ResetPosition()
     {

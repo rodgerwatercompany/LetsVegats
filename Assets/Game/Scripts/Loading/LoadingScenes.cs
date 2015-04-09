@@ -25,7 +25,7 @@ public class LoadingScenes : MonoBehaviour
     string url_userinfo = "http://192.168.152.205/LetsVegs/Loading/UserInfo.json.txt";
     string url_lobbyinfo = "http://192.168.152.205/LetsVegs/Loading/LobbyInfo.json.txt";
     //string url_lobbyAB = "http://192.168.152.205/LetsVegs/" + NAME_platform + "/GameLobby_v5_4.unity3d";
-    string url_lobbyAB = "http://192.168.152.205/LetsVegs/" + NAME_platform + "/GameLobby_v11_3.unity3d";
+    string url_lobbyAB = "http://192.168.152.205/LetsVegs/" + NAME_platform + "/GameLobby_v14_4.unity3d";
 
     private float progress_now;
 

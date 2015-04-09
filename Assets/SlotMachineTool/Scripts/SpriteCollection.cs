@@ -2,18 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BingoLineManager : MonoBehaviour
+public class SpriteCollection : MonoBehaviour
 {
 
-    public BingoLineObject[] bingoLineObjects;
+    public SpriteObject[] spriteObjects;
 
     private bool sw_Ani;
 
     
     public void ShowBingoLine(int countBingoLine)
     {
-        Debug.Log(countBingoLine);
-
         CloseAllBingoLine();
 
         for(int i = 0 ; i < countBingoLine ; i++)
@@ -54,18 +52,18 @@ public class BingoLineManager : MonoBehaviour
     // 開啟某一條線
     private void SetBingoLineOpen(int idx)
     {
-        bingoLineObjects[idx - 1].Open();
+        spriteObjects[idx - 1].Open();
     }
 
     // 關閉某一條線
     private void SetBingoLineClose(int idx)
     {
-        bingoLineObjects[idx - 1].Close();
+        spriteObjects[idx - 1].Close();
     }
 
     public void CloseAllBingoLine()
     {
-        foreach (BingoLineObject bingo in bingoLineObjects)
+        foreach (SpriteObject bingo in spriteObjects)
             bingo.Close();
     }
 
@@ -95,7 +93,6 @@ public class BingoLineManager : MonoBehaviour
         sw_Ani = false;
 
         this.CloseAllBingoLine();
-    }
-    
+    }    
 
 }

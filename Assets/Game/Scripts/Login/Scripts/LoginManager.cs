@@ -110,11 +110,12 @@ public class LoginManager : MonoBehaviour
             else
             {
 
+                print(www.text);
+
                 JsonData jd = JsonMapper.ToObject(www.text);
                 string ip_esball = jd["data"]["ip"].ToString();
 
-                int hallID = (int)jd["data"]["HallID"];
-
+                RtmpC2S.hallid = (jd["data"]["HallID"]).ToString();
 
                 string str_acc = uiinput_account.value;
                 string user_pw = uiinput_password.value;
@@ -149,6 +150,7 @@ public class LoginManager : MonoBehaviour
                 print("GetSid.error is " + www.error);
             else
             {
+                print(www.text);
 
                 JsonData jd = JsonMapper.ToObject(www.text);
 
@@ -157,6 +159,8 @@ public class LoginManager : MonoBehaviour
 
                     string sid = "";
                     sid = jd["data"]["session_token"].ToString();
+
+                    RtmpC2S.userid = (jd["data"]["UserID"]).ToString();
 
                     if (sid != "")
                     {
