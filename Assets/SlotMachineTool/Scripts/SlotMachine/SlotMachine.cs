@@ -13,6 +13,8 @@ public class SlotMachine : MonoBehaviour {
 
     private bool bBreak;
 
+    private bool bAutoBreak;
+
     private string[] tilesprites;
 
 
@@ -26,6 +28,7 @@ public class SlotMachine : MonoBehaviour {
             tileline.SetSpeed(this.SlotSpeed_max);
 
         bBreak = false;
+        bAutoBreak = false;
         fspeeds = new float[5] { 0, 0 , 0 , 0  , 0 };
     }
 	
@@ -58,6 +61,39 @@ public class SlotMachine : MonoBehaviour {
                 CallLua_FinisStopSpin();
             }
         }
+        else if(bAutoBreak)
+        {
+            int cnt_over = 0;
+            for (int i = 0; i < tileLines.Length; i++)
+            {
+                if (fspeeds[i] > 600.0f)
+                {
+                    fspeeds[i] -= (1000 * Time.deltaTime);
+
+                    if (fspeeds[i] <= 600.0f)
+                    {
+                        fspeeds[i] = 600.0f;
+                        tileLines[i].SetSprites(GetTileSpriteInfo(i));
+                        tileLines[i].StopRun();
+                    }
+
+                    tileLines[i].SetSpeed(fspeeds[i]);
+                }
+                else
+                {
+                    cnt_over++;
+                }
+            }
+
+            if(cnt_over >= tileLines.Length -1)
+            {
+                bAutoBreak = false;
+
+                // 通知滾輪全部停止轉動
+                CallLua_FinisStopSpin();
+
+            }
+        }
 	}
 
     private void CallLua_FinisStopSpin()
@@ -76,6 +112,9 @@ public class SlotMachine : MonoBehaviour {
 
         foreach (TileLine tileline in tileLines)
             tileline.StartRun();
+
+        bBreak = false;
+        bAutoBreak = false;
     }
 
     public void OnClick_StartStop()
@@ -86,6 +125,11 @@ public class SlotMachine : MonoBehaviour {
         foreach (TileLine tileline in tileLines)
             tileline.StopRun();
          */
+    }
+
+    public void OnClick_StartStop_Immediate()
+    {
+        bAutoBreak = true;
     }
 
     public void SetTileSpriteInfo(string[] sprites)

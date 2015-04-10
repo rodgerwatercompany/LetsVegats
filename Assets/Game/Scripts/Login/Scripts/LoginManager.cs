@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 using LitJson;
 
@@ -18,28 +19,34 @@ public class LoginManager : MonoBehaviour
                             "bm.hgznfgqkgie.com"
                             };
 
+    Dictionary<string, string> dic_errortable_tw;
+
     public UIInput uiinput_account;
     public UIInput uiinput_password;
 
+    public GameObject prefab_msg;
 
     void Awake()
     {
 
         // 禁止休眠
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+        // 建立錯誤訊息表
+        dic_errortable_tw = new Dictionary<string, string>();
+
+        dic_errortable_tw.Add("90002", "會員帳號或密碼錯誤");
+        dic_errortable_tw.Add("90004", "會員凍結");
+        dic_errortable_tw.Add("90005", "會員停用");
+        dic_errortable_tw.Add("90006", "30秒重覆登入");
+        dic_errortable_tw.Add("90007", "會員停權");
+        dic_errortable_tw.Add("90015", "廳主DomainCode不存在");
+        //dic_errortable_tw.Add("90018", "");
+        dic_errortable_tw.Add("44001", "參數未帶齊");
+        dic_errortable_tw.Add("22000", "使用者未登入");
+        dic_errortable_tw.Add("22001", "使用者登出");
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void OnClick_UserLogin()
     {
@@ -171,12 +178,38 @@ public class LoginManager : MonoBehaviour
                         RtmpC2S.ip = ip;
                         Application.LoadLevel("Loading");
                     }
-                        
+
                 }
                 else
-                    Debug.LogError("Get sid error : Code " + jd["data"]["Code"] + " Message is " + jd["data"]["Message"]);
+                {
+                    ShowError(jd);
+                }
             }
         }
     }
 
+    void ShowError(JsonData jd)
+    {
+
+        string str = jd["data"]["Code"] + " Message is " + jd["data"]["Message"];
+        
+        string str_error = "";
+        string key = (jd["data"]["Code"]).ToString();
+
+        dic_errortable_tw.TryGetValue(key , out str_error);
+
+        GameObject ga_coverpanel = GameObject.Find("CoverPanel");
+        GameObject ga = Instantiate(
+            prefab_msg,
+            new Vector3(0.0f, 0.0f, 0.0f),
+            Quaternion.Euler(0.0f, 0.0f, 0.0f)) as GameObject;
+
+        ga.transform.parent = ga_coverpanel.transform;
+        GF_Window window = ga.GetComponent("GF_Window") as GF_Window;
+
+        if (str_error == "")
+            window.SetContext(str);
+        else
+            window.SetContext(str_error);
+    }
 }
