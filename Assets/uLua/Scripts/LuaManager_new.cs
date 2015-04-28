@@ -69,10 +69,14 @@ public class LuaManager_new : MonoBehaviour
     }
     
 
-    public void CallLuaFuction(string name_luafunc, params object[] paras)
+    public void CallLuaGameObject(string name_gameobject, string name_luafunc, string str_paras)
     {
-        
-        luaMgr.CallLuaFunction(name_luafunc, paras);
+        luaMgr.CallLuaFunction("Call", name_gameobject, name_luafunc, str_paras);
+
     }
 
+    public void CallLuaFuction(string name_luafunc, params object[] paras)
+    {
+        luaMgr.CallLuaFunction(name_luafunc, paras);
+    }
 }

@@ -78,7 +78,6 @@ public class RC_ScrollPage : MonoBehaviour
             NextPos_x = NextPos_x - Distance;
             ismoving = true;
         }
-
     }
 
 

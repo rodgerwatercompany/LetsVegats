@@ -29,11 +29,4 @@ public class Manager : MonoBehaviour
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
-    /*
-    // 呼叫連線API
-    private void Connect(string ip)
-    {
-        print("Connect");
-        RtmpC2S.Connect(ip);
-    }*/
 }

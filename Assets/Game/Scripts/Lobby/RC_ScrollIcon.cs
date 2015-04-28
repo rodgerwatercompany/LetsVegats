@@ -3,11 +3,15 @@ using System.Collections;
 
 public class RC_ScrollIcon : MonoBehaviour {
 
+    private LobbyManager lobbyManager;
+
 #if UNITY_IPHONE
     const string NAME_platform = "IOS";
 #elif UNITY_ANDROID
     const string NAME_platform = "Android";
 #endif
+
+    public RC_SimpleButton simplebutton;
 
     public GameObject Ref_progressball;
 
@@ -26,12 +30,16 @@ public class RC_ScrollIcon : MonoBehaviour {
     private string icon_ABURL;
     private int icon_ABVersion;
     private string icon_GameSceneName;
+    private bool icon_comingsoon;
+    private int icon_userlevel;
 
     private WWW www_loadAB;
     private bool SW_LoadingAB;
 
     void Start()
     {
+        lobbyManager = null;
+
         this.SW_LoadingAB = false;
 
     }
@@ -82,19 +90,32 @@ public class RC_ScrollIcon : MonoBehaviour {
 
         this.SetIConSprite(name_sp);
 
+        this.icon_comingsoon = comingsoon;
+        this.icon_userlevel = userlevel;
 
         string url = ABUrl.Replace("PLATFORMNAME", NAME_platform);
         this.icon_ABURL     = url;
         this.icon_ABVersion = ABversion;
 
-        int iconstate = this.GetIconState(comingsoon, userlevel, url, ABversion);
+        int iconstate = this.GetIconState(this.icon_comingsoon, this.icon_userlevel, this.icon_ABURL, this.icon_ABVersion);
         print("gameOrder is " + icon_gameorder + ", state is " + iconstate);
 
         this.SetIConButton(iconstate);
         this.SetDownloadSprite(iconstate);
-        this.SetLevelLimit(userlevel);
+        this.SetLevelLimit(this.icon_userlevel);
     }
 
+
+    private void Setup()
+    {
+        int iconstate = this.GetIconState(this.icon_comingsoon, this.icon_userlevel, this.icon_ABURL, this.icon_ABVersion);
+
+        this.SetIConButton(iconstate);
+        this.SetDownloadSprite(iconstate);
+        this.SetLevelLimit(this.icon_userlevel);
+
+        simplebutton.SetState("Normal");
+    }
 
     public void OnClick_DownLoad()
     {
@@ -108,7 +129,7 @@ public class RC_ScrollIcon : MonoBehaviour {
                                         as GameObject;
 
         gaobj.transform.parent = gameObject.transform;
-        gaobj.transform.localPosition = new Vector3(0.0f, -46.27f, 0.0f);
+        gaobj.transform.localPosition = new Vector3(0.0f, -150.0f, 0.0f);
         gaobj.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         progressball = gaobj.GetComponent<RC_ProgressBall>();
@@ -131,6 +152,14 @@ public class RC_ScrollIcon : MonoBehaviour {
         Application.LoadLevel("LoadingGame");
 
         //StartCoroutine(LoadingAB());
+    }
+
+    public void OnClick_ShowDeleteWindow()
+    {
+        if (lobbyManager == null)
+            lobbyManager = GameObject.Find("LobbyManager").GetComponent<LobbyManager>();
+        
+        lobbyManager.OpenMessagePanel(this.icon_ABURL, this.icon_ABVersion, Setup);
     }
 
     public void OnFinish_DownLoadAB()

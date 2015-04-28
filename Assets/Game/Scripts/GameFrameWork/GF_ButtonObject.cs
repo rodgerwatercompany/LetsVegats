@@ -1,38 +1,28 @@
 ﻿using UnityEngine;
 
+[System.Serializable]
+public struct Func
+{
+    public string GameObject;
+    public string MethodName;
+    public string parameter;
+}
 
 public class GF_ButtonObject : MonoBehaviour
 {
-
-    private LuaManager_new luamanager;
     public UIButton uibutton;
 
-    // 要呼叫Lua方法的名稱
-    public string Name_CallLuaFunction;
-
-    public string Name_LongPressCallLua;
-
-    // 參數
-    public string str_parms;
+    // 要呼叫Lua的方法
+    public Func luaFunc_normal;
+    public Func luaFunc_longpress;
 
     public bool bClickDisable;
 
-    // 傳送參數呼叫
-    public bool bUseParam;
 
     // OnPress
-    private bool haveDone;
-    private bool bpressing;
+    private bool haveDone;   // 防止長按之後，進行短按。
+    private bool bpressing;  // 防止短按之後，進行長按。
     private float fpresstime_first;
-
-
-    void Awake()
-    {
-
-        luamanager = GameObject.Find("LuaManager").GetComponent<LuaManager_new>();
-        if (luamanager == null)
-            Debug.LogError("can't found luamanager !");
-    }
 
     void Update()
     {
@@ -40,9 +30,9 @@ public class GF_ButtonObject : MonoBehaviour
         {
             if(Time.time - fpresstime_first > 1.0f)
             {
-                if (!string.IsNullOrEmpty(Name_LongPressCallLua))
+                if (!string.IsNullOrEmpty(luaFunc_longpress.MethodName))
                 {
-                    luamanager.CallLuaFuction(Name_LongPressCallLua);
+                    this.CallLua(luaFunc_longpress.GameObject,luaFunc_longpress.MethodName, luaFunc_longpress.parameter);
                     haveDone = true;
                     SetState("Disabled");
                 }
@@ -92,42 +82,43 @@ public class GF_ButtonObject : MonoBehaviour
     {
         if (uibutton.state != UIButtonColor.State.Disabled && uibutton.enabled && !haveDone)
         {
-            haveDone = true;
+            //haveDone = true;
 
             if (bClickDisable)
                 SetState("Disabled");
 
-            if (!bUseParam)
-            {
-                luamanager.CallLuaFuction(Name_CallLuaFunction);
-            }
-            else
-            {
-                luamanager.CallLuaFuction(Name_CallLuaFunction, str_parms);
-            }
+            this.CallLua(luaFunc_normal.GameObject, luaFunc_normal.MethodName, luaFunc_normal.parameter);
         }
     }
 
     public void OnPress()
     {
-        if (haveDone)
+        if (bpressing)
         {
+            //print("close");
+            bpressing = false;
         }
         else
         {
-            if (bpressing)
-            {
-                //print("close");
-                //bpressing = false;
-            }
-            else
-            {
-                //print("open");
-                bpressing = true;
+            //print("open");
+            bpressing = true;
 
-                fpresstime_first = Time.time;
-            }
+            fpresstime_first = Time.time;
         }
     }       
 
+    private void CallLua(string lua_gameObject,string lua_methodname,string str_parms)
+    {
+        if(string.IsNullOrEmpty(lua_gameObject))
+        {
+            if (!string.IsNullOrEmpty(str_parms))
+                LuaManager_new.Instance().CallLuaFuction(lua_methodname, str_parms);
+            else
+                LuaManager_new.Instance().CallLuaFuction(lua_methodname);
+        }
+        else
+        {
+            LuaManager_new.Instance().CallLuaGameObject(lua_gameObject, lua_methodname, str_parms);
+        }
+    }
 }

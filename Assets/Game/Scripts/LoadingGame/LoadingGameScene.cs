@@ -48,6 +48,8 @@ public class LoadingGameScene : MonoBehaviour
 
                 sw_loadingGame = false;
 
+                print(ABManager.assetbundle_Game.name);
+
                 Application.LoadLevel(LoadingGameManager.ab_scenename);
             }
         }

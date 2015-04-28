@@ -16,8 +16,10 @@ public class RC_ScrollManager : MonoBehaviour
 
     private int NowPageID;
 
+    
     void Start()
     {
+
         NowPageID = 0;
 
         pages = new RC_ScrollPage[Pagesize];
@@ -39,10 +41,6 @@ public class RC_ScrollManager : MonoBehaviour
 
             pages[i].Init((int)offset_x, MoveSpeed, distance);
         }
-    }
-
-    void Update()
-    {
     }
 
     public void MoveRight()
@@ -97,9 +95,4 @@ public class RC_ScrollManager : MonoBehaviour
 
     }
 
-
-    public void OnClick_Download(int gameorder)
-    {
-
-    }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 
 public class SpriteCollection : MonoBehaviour
 {
@@ -10,72 +10,74 @@ public class SpriteCollection : MonoBehaviour
     private bool sw_Ani;
 
     
-    public void ShowBingoLine(int countBingoLine)
+    public void OpenSprite(int id_bingoline)
     {
-        CloseAllBingoLine();
+        SetSpriteOpen(id_bingoline);
+    }
 
-        for(int i = 0 ; i < countBingoLine ; i++)
+    public void CloseSprite(int id_bingolines)
+    {
+        SetSpriteClose(id_bingolines);
+    }
+
+    public void OpenSprites(int[] ids_bingolines)
+    {
+        foreach (int integer in ids_bingolines)
+            SetSpriteOpen(integer);
+    }
+    
+    public void StartPlayAnimation(int[] spriteids)
+    {
+        sw_Ani = true;
+        StartCoroutine(DoAnimation(spriteids));
+    }
+
+    public void OpenSpriteFromZeroToIdx(int idx)
+    {
+
+        try
         {
-            SetBingoLineOpen(i+1);
+            for (int i = 1; i <= spriteObjects.Length; i++)
+            {
+                if (i <= idx)
+                    SetSpriteOpen(i);
+                else
+                    SetSpriteClose(i);
+            }
+        }
+        catch(Exception ex)
+        {
+            print(ex);
         }
     }
 
-    public void OpenBingoLine(int id_bingoline)
-    {
-        SetBingoLineOpen(id_bingoline);
-    }
-
-    public void CloseBingoLine(int id_bingolines)
-    {
-        SetBingoLineClose(id_bingolines);
-    }
-
-    public void OpenBingoLine(int[] ids_bingolines)
-    {
-        foreach (int integer in ids_bingolines)
-            SetBingoLineOpen(integer);
-    }
-
-    public void CloseBingoLine(int[] id_bingoline)
-    {
-        foreach (int integer in id_bingoline)
-            SetBingoLineClose(integer);
-    }
-    
-    public void StartPlayAnimation(int[] lineids)
-    {
-        sw_Ani = true;
-        StartCoroutine(DoAnimation(lineids));
-    }
-
-
-    // 開啟某一條線
-    private void SetBingoLineOpen(int idx)
-    {
-        spriteObjects[idx - 1].Open();
-    }
-
-    // 關閉某一條線
-    private void SetBingoLineClose(int idx)
-    {
-        spriteObjects[idx - 1].Close();
-    }
-
-    public void CloseAllBingoLine()
+    public void CloseAllSprtie()
     {
         foreach (SpriteObject bingo in spriteObjects)
             bingo.Close();
     }
 
+    // 開啟某一條線
+    private void SetSpriteOpen(int idx)
+    {
+        spriteObjects[idx - 1].Open();
+    }
+
+    // 關閉某一條線
+    private void SetSpriteClose(int idx)
+    {
+        spriteObjects[idx - 1].Close();
+    }
+    
     IEnumerator DoAnimation(int[] lineids)
     {
         int nowidx = 0;
         do
         {
-            SetBingoLineOpen(lineids[nowidx]);
+            SetSpriteOpen(lineids[nowidx]);
 
             yield return new WaitForSeconds(1.0f);
-            SetBingoLineClose(lineids[nowidx]);
+            SetSpriteClose(lineids[nowidx]);
 
 
             nowidx++;
@@ -92,7 +94,7 @@ public class SpriteCollection : MonoBehaviour
         // Stop DoAnimation Coroutine
         sw_Ani = false;
 
-        this.CloseAllBingoLine();
+        this.CloseAllSprtie();
     }    
 
 }

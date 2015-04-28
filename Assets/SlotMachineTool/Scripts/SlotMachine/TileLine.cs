@@ -16,6 +16,10 @@ public class TileLine : MonoBehaviour {
     private bool btunround;
     private int cnt_stop = 0;
 
+    public delegate void TL_FinishSpin();
+
+    TL_FinishSpin tilefinishspin;
+
     // Use this for initialization
     void Start () {
         //this.sw_Move = false;
@@ -24,6 +28,7 @@ public class TileLine : MonoBehaviour {
 
         this.sw_Move_all = false;
         this.sw_Break = false;
+
     }
 	
 	// Update is called once per frame
@@ -42,15 +47,17 @@ public class TileLine : MonoBehaviour {
                 Turnround();
                 btunround = false;
             }
-
-            if (cnt_stop == 8)
-                sw_Move_all = false;
         }
 	}
 
     public void SetSpeed(float speed)
     {
         this.fspeed = speed;
+    }
+
+    public float GetSpeed()
+    {
+        return this.fspeed;
     }
 
     public void Move(int idx)
@@ -68,6 +75,12 @@ public class TileLine : MonoBehaviour {
 
                 sw_Move[idx] = false;
                 cnt_stop++;
+
+                if (cnt_stop == 8)
+                {
+                    sw_Move_all = false;
+                    tilefinishspin();
+                }
             }
             else
             {
@@ -99,10 +112,11 @@ public class TileLine : MonoBehaviour {
         this.btunround = false;
         cnt_stop = 0;
     }
-    public void StopRun()
+    public void StopRun(TL_FinishSpin finishspin)
     {
 
         this.sw_Break = true;
+        tilefinishspin = new TL_FinishSpin(finishspin);
     }
 
     public void SetSprites(string[] idxs)
